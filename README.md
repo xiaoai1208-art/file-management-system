@@ -46,6 +46,25 @@ npm run build
 npm run lint
 ```
 
+## Tech Stack
+
+**Frontend:**
+- Vue.js 3 (Composition API)
+- Vite
+- Tailwind CSS
+- Axios
+
+**Backend:**
+- Node.js
+- Express.js
+- SQLite3
+- RESTful API
+- CORS
+
+**Deployment:**
+- Railway
+- Docker
+
 ## Development Process
 
 During the development of this project, AI tools were used as a development assistant to support idea generation, debugging, and implementation improvements.
@@ -184,3 +203,22 @@ Backend API:
 https://file-management-system-production.up.railway.app/api/notes
 
 GitHub: https://github.com/xiaoai1208-art/file-management-system
+
+## Local Development
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+
+Frontend will run on: http://localhost:5173
+### Backend
+
+```bash
+cd backend
+npm install
+npm start
+
+Backend will run on: http://localhost:3000
