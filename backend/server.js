@@ -3,23 +3,19 @@ const cors = require('cors')
 
 const db = require('./database')
 
-
 const app = express()
 
-
 app.use(cors())
-
 app.use(express.json())
 
 
-const PORT = process.env.PORT || 3000;
+// Health check for Railway
+app.get('/', (req, res) => {
+  res.send('File Management API is running')
+})
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server running on port ${PORT}`);
-});
 
 // GET all notes
-
 app.get('/api/notes', (req, res) => {
 
   db.all(
@@ -28,11 +24,8 @@ app.get('/api/notes', (req, res) => {
     (err, rows) => {
 
       if (err) {
-
         return res.status(500).json(err)
-
       }
-
 
       res.json(rows)
 
@@ -42,13 +35,8 @@ app.get('/api/notes', (req, res) => {
 })
 
 
-
-
-
 // CREATE note
-
 app.post('/api/notes', (req, res) => {
-
 
   const {
     title,
@@ -56,9 +44,7 @@ app.post('/api/notes', (req, res) => {
   } = req.body
 
 
-
   db.run(
-
     `
     INSERT INTO notes(
       title,
@@ -73,51 +59,37 @@ app.post('/api/notes', (req, res) => {
       datetime('now','localtime')
     )
     `,
-
     [
       title,
       content
     ],
 
-
     function(err) {
 
-
       if (err) {
-
         return res.status(500).json(err)
-
       }
 
 
       res.json({
- id:this.lastID,
- title,
- content,
- created_at: new Date(),
- updated_at: new Date()
-})
-
+        id: this.lastID,
+        title,
+        content,
+        created_at: new Date(),
+        updated_at: new Date()
+      })
 
     }
 
   )
 
-
 })
 
 
-
-
-
-
 // UPDATE note
-
 app.put('/api/notes/:id', (req, res) => {
 
-
   const id = req.params.id
-
 
   const {
     title,
@@ -125,9 +97,7 @@ app.put('/api/notes/:id', (req, res) => {
   } = req.body
 
 
-
   db.run(
-
     `
     UPDATE notes
     SET
@@ -136,96 +106,65 @@ app.put('/api/notes/:id', (req, res) => {
       updated_at=datetime('now','localtime')
     WHERE id=?
     `,
-
     [
       title,
       content,
       id
     ],
 
-
     (err) => {
 
-
       if (err) {
-
         return res.status(500).json(err)
-
       }
 
 
       res.json({
-
         message: 'Note updated'
-
       })
-
 
     }
 
   )
 
-
 })
 
 
-
-
-
-
-
 // DELETE note
-
 app.delete('/api/notes/:id', (req, res) => {
-
 
   const id = req.params.id
 
 
-
   db.run(
-
     'DELETE FROM notes WHERE id=?',
-
     [
       id
     ],
 
-
     (err) => {
 
-
       if (err) {
-
         return res.status(500).json(err)
-
       }
 
 
       res.json({
-
         message: 'Note deleted'
-
       })
-
 
     }
 
   )
 
-
 })
 
 
+// Railway PORT
+const PORT = process.env.PORT || 3000
 
+app.listen(PORT, "0.0.0.0", () => {
 
-
-
-
-app.listen(PORT, () => {
-
-  console.log(
-    `Server running on http://localhost:${PORT}`
-  )
+  console.log(`Server running on port ${PORT}`)
 
 })
