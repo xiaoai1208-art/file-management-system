@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: notes-backend
+    ports:
+      - "3000:3000"
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: notes-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: always
