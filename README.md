@@ -48,91 +48,139 @@ npm run lint
 
 ## Development Process
 
-During the development process, I used AI tools as a development assistant for brainstorming, debugging, and improving the overall application quality. AI was mainly used for generating ideas, reviewing approaches, and helping solve implementation issues. All generated suggestions were reviewed, modified, and tested before integration.
+During the development of this project, AI tools were used as a development assistant to support idea generation, debugging, and implementation improvements.
+
+All AI suggestions were reviewed, adjusted according to the project requirements, and tested before being applied.
 
 ---
 
-### AI Assistance Example 1: UI Design and Styling
+## AI-Assisted UI Design Improvement
 
-**Prompt:**
+### Prompt
 
-"Suggest a modern Tailwind CSS design for a Vue.js note management application with a clean and minimal interface."
+"Suggest a clean and modern UI design approach for a Vue.js note management application using Tailwind CSS."
 
-**AI Output:**
 
-The AI suggested using a card-based layout, responsive grid structure, hover animations, consistent color palettes, and modern UI elements such as shadows and rounded corners.
+### AI Output
 
-**Modification and Verification:**
+The AI suggested improving the interface by using:
 
-I modified the suggested design by creating my own color system using soft neutral colors:
+- A card-based note layout
+- Consistent spacing and typography
+- Rounded components with shadows
+- Responsive design for different screen sizes
+- Simple hover interactions
 
-- Background: #F7F3EC
-- Header: #F1EEE5
-- Text: #31322C
-- Buttons: #847C74
-- Error / Delete Button: #DC6B6B (soft red)
 
-I also added hover effects, custom modal dialogs, and responsive layouts using Tailwind CSS. The UI was tested across different screen sizes to ensure usability.
+### Implementation
 
-**Reason for Changes:**
+I adapted the suggestions and created a custom design style for the application.
 
-I wanted to create a clean and professional interface suitable for a note management system while keeping the design simple and user-friendly.
+Changes I made include:
 
-### AI Assistance Example 2: Backend API Structure and CRUD Implementation
+- Designed a soft neutral color theme
+- Added note cards with hover effects
+- Created a confirmation modal before deleting notes
+- Added an empty state when no notes are available
+- Improved the layout responsiveness
 
-**Prompt:**
 
-"Help design a RESTful API structure for a note management system using Node.js, Express, and SQLite."
+### Reason
 
-**AI Output:**
+The AI suggestions provided a general UI direction, but I customized the design to make the interface simpler and more suitable for a note management application.
 
-The AI suggested implementing REST API endpoints for creating, retrieving, updating, and deleting notes:
 
-- GET /api/notes
-- POST /api/notes
-- PUT /api/notes/:id
-- DELETE /api/notes/:id
+---
 
-It also suggested using SQLite queries with parameterized statements.
+## AI-Assisted Backend Architecture
 
-**Modification and Verification:**
+### Prompt
 
-I implemented the API structure using Express and SQLite. I modified the database logic by adding created_at and updated_at fields to track note timestamps.
+"Suggest a suitable backend structure for a note management system using Node.js, Express, and SQLite."
 
-I also tested each API endpoint using frontend integration and verified that CRUD operations worked correctly.
 
-**Reason for Changes:**
+### AI Output
 
-The suggested structure provided a clear separation between frontend and backend responsibilities and followed common REST API practices.
+The AI recommended:
 
-### AI Assistance Example 3: Debugging and Error Handling Improvements
+- Using Express to create REST API endpoints
+- Separating frontend and backend responsibilities
+- Using SQLite for lightweight data storage
+- Implementing CRUD operations for managing notes
 
-**Prompt:**
 
-"My Vue.js frontend cannot create or delete notes after connecting to an Express backend. Help identify possible issues and suggest debugging steps."
+### Implementation
 
-**AI Output:**
+I implemented the backend using Express.js and SQLite.
+
+I developed API endpoints for:
+
+- Retrieving notes
+- Creating notes
+- Updating notes
+- Deleting notes
+
+
+I also enhanced the database by adding timestamp fields to track note creation and update times.
+
+The API was tested through frontend integration to ensure that all operations worked correctly.
+
+
+### Reason
+
+The suggested structure provided a good starting point, but I adjusted the implementation based on the actual requirements of the application.
+
+
+---
+
+## AI-Assisted Debugging and Deployment
+
+### Prompt
+
+"Help troubleshoot issues when connecting a Vue.js frontend with an Express backend during deployment."
+
+
+### AI Output
 
 The AI suggested checking:
 
-- Backend server status
-- API endpoint configuration
-- Axios base URL
-- Database connection
-- Frontend error handling
+- API URL configuration
+- Backend availability
+- CORS settings
+- Docker configuration
+- Deployment logs
 
-**Modification and Verification:**
 
-I reviewed my project structure and fixed issues related to API communication and backend connection.
+### Implementation
 
-I also improved the application by adding:
+I used these suggestions as a debugging checklist and investigated the actual errors during deployment.
 
-- Frontend try-catch error handling
-- User-friendly error messages
-- Loading state while fetching notes
+I fixed several deployment-related issues, including:
 
-The application was tested by performing multiple create, update, and delete operations.
+- Updating frontend API configuration from localhost to the deployed backend URL
+- Configuring Docker files correctly
+- Adjusting server port handling for Railway deployment
+- Verifying frontend and backend communication after deployment
 
-**Reason for Changes:**
 
-The debugging process helped improve application reliability and provided a better user experience when unexpected errors occur.
+### Reason
+
+The AI helped provide possible debugging directions, but the final fixes were based on analyzing the application logs and testing the deployed system.
+
+## Deployment Note
+
+The application was tested locally, and the timestamp display worked correctly in the local development environment.
+
+After deployment to Railway, the server environment uses UTC timezone, which may cause the displayed `created_at` and `updated_at` timestamps to differ from the local timezone.
+
+The timestamp tracking functionality is working correctly. Timezone localization can be further improved in the future by applying a specific timezone conversion layer based on the user's location.
+
+## Live Demo
+
+Frontend:
+https://file-management-system-frontend-production.up.railway.app
+
+Backend API:
+https://file-management-system-production.up.railway.app/api/notes
+
+GitHub: https://github.com/xiaoai1208-art/file-management-system
